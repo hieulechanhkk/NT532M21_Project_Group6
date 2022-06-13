@@ -14,7 +14,7 @@ const char* password =  "UiTiOtAP";
 String API = "http://lab3-iot-nodejs.herokuapp.com/v1";
 
 String fire = "";
-
+String area = "";
 int temp  = 0;
 int hum = 0;
 WiFiClient espClient;
@@ -88,9 +88,10 @@ void xuly(String result) {
     p = strtok(NULL, delimiter);
     ++i;
   }
-  fire = words[3];
+  area = words[0];
   temp = words[1].toInt();
   hum = words[2].toInt();
+  fire = words[3];
 }
 
 
@@ -104,7 +105,7 @@ void post_temp_to_log(long temp, long hum, String detect)
    http.addHeader("Content-Type", "application/json");          
    StaticJsonDocument<200> doc;
    StaticJsonDocument<200> doc1;
-   doc["area"] = "Khu Vuc A";
+   doc["area"] = area;
    doc["temperature"] = temp;
    doc["humidity"] = hum;
    doc["detect"] = detect;
